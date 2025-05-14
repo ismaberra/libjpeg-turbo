@@ -62,3 +62,26 @@ add_fuzz_target(libjpeg_turbo decompress.cc)
 add_fuzz_target(decompress_yuv decompress_yuv.cc)
 
 add_fuzz_target(transform transform.cc)
+
+
+# NOTE : Why not using "add_fuzz_target(...)" ? Because it doesen't allow 
+# - to add .c extra like ../turbojpeg-mp.c
+# - to adjust flags or sources manually
+# So we make like cjpeg_fuzzer -> an explicit bloc. 
+add_executable(tj3SaveImage16_fuzzer${FUZZER_SUFFIX}
+  tj3SaveImage16_fuzzer.cc
+  ../turbojpeg-mp.c)  # pour inclure la fonction cible
+
+set_property(TARGET tj3SaveImage16_fuzzer${FUZZER_SUFFIX} PROPERTY COMPILE_FLAGS
+  ${COMPILE_FLAGS})
+
+target_link_libraries(tj3SaveImage16_fuzzer${FUZZER_SUFFIX}
+  ${FUZZ_LIBRARY}
+  turbojpeg-static)
+
+install(TARGETS tj3SaveImage16_fuzzer${FUZZER_SUFFIX}
+  RUNTIME DESTINATION ${FUZZ_BINDIR} COMPONENT bin)
+
+
+# TEMPORAIRE POUR TEST
+message(STATUS ">>> TJ3 Save fuzzer added")
