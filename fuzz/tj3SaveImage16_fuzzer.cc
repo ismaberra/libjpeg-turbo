@@ -26,7 +26,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
   size_t required_size = 5 + pitch * height;
   if (size < required_size) return 0;
 
-  const short *buffer = (const short *)(data + 5);
+  const unsigned short *buffer = (const short *)(data + 5);
 
   // Créer le contexte TurboJPEG
   tjhandle handle = tj3Init(TJINIT_COMPRESS);
