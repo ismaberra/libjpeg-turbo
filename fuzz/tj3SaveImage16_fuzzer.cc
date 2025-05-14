@@ -24,7 +24,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
   // Calcul du pitch et vérification du buffer
   size_t pitch = width * channels * sizeof(short);
   size_t required_size = 5 + pitch * height;
-  //if (size < required_size) return 0;
+  if (size < required_size) return 0;
 
   const unsigned short *buffer = (const unsigned short *)(data + 5);
 
