@@ -69,8 +69,7 @@ add_fuzz_target(transform transform.cc)
 # - to adjust flags or sources manually
 # So we make like cjpeg_fuzzer -> an explicit bloc. 
 add_executable(tj3SaveImage16_fuzzer${FUZZER_SUFFIX}
-  tj3SaveImage16_fuzzer.cc
-  ../turbojpeg-mp.c)  # pour inclure la fonction cible
+  tj3SaveImage16_fuzzer.cc)  # pour inclure la fonction cible
 
 set_property(TARGET tj3SaveImage16_fuzzer${FUZZER_SUFFIX} PROPERTY COMPILE_FLAGS
   ${COMPILE_FLAGS})
