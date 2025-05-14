@@ -12,8 +12,8 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
   uint16_t height = data[2] | (data[3] << 8);
 
   // Limiter la taille (éviter les crashs/allocs géantes)
-  width = width % 512 + 1;
-  height = height % 512 + 1;
+  width = width % 32 + 1;
+  height = height % 32 + 1;
 
   // Lire et filtrer le pixelFormat
   uint8_t raw_format = data[4];
